@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chima & Arte · Especiarias com alma</title>
+    
+    <!-- ===== FAVICON ===== -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./logo.png">
+    <link rel="shortcut icon" href="./logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8B6B4A;
+            --primary-light: #A88364;
+            --primary-dark: #5C4532;
+            --cream: #F9F5F0;
+            --cream-dark: #EDE6DD;
+            --dark: #2C241E;
+            --text: #3D322A;
+            --gold: #C4A27A;
+            --shadow: 0 10px 40px rgba(44, 36, 30, 0.08);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== BOTÃO FLUTUANTE WHATSAPP ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--dark);
+            color: white;
+            font-size: 34px;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(44, 36, 30, 0.35);
+            transition: all 0.3s ease;
+            animation: pulse-wpp 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.12);
+            background: var(--primary);
+            box-shadow: 0 6px 30px rgba(139, 107, 74, 0.5);
+            color: white;
+        }
+
+        @keyframes pulse-wpp {
+            0% {
+                box-shadow: 0 4px 20px rgba(44, 36, 30, 0.35);
+            }
+            50% {
+                box-shadow: 0 4px 35px rgba(44, 36, 30, 0.55);
+            }
+            100% {
+                box-shadow: 0 4px 20px rgba(44, 36, 30, 0.35);
+            }
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: white;
+            padding: 16px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+
+        .logo-img-wrapper {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid var(--primary-light);
+            box-shadow: 0 4px 12px rgba(139, 107, 74, 0.15);
+            transition: all 0.3s;
+        }
+
+        .logo-img-wrapper:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(139, 107, 74, 0.25);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .logo-sub {
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--primary-light);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 26px;
+            color: var(--dark);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 140px 0 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: url('./hero.png') center/cover no-repeat;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .hero-content h1 span {
+            color: var(--gold);
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 480px;
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 107, 74, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 14px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid white;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-image {
+            display: none;
+        }
+
+        /* ===== CARROSSEL ===== */
+        .carousel-section {
+            padding: 60px 0 60px;
+            background: var(--cream);
+        }
+
+        .carousel-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .carousel-title span {
+            color: var(--primary);
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            border-radius: 28px;
+            overflow: hidden;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: transparent;
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.85);
+            border: none;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--dark);
+            transition: all 0.3s;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: white;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        .carousel-btn.prev {
+            left: 20px;
+        }
+
+        .carousel-btn.next {
+            right: 20px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 0 0;
+            flex-wrap: wrap;
+        }
+
+        .carousel-dots .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .carousel-dots .dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+
+        .carousel-dots .dot:hover {
+            background: var(--primary-light);
+        }
+
+        /* ===== SOBRE ===== */
+        .about {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .about .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 50px rgba(44, 36, 30, 0.12);
+        }
+
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .about-text h2 span {
+            color: var(--primary);
+        }
+
+        .about-text .subtitle {
+            color: var(--primary-light);
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 13px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .about-text .description {
+            color: #5A4D42;
+            margin-bottom: 24px;
+            font-size: 16px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-top: 8px;
+        }
+
+        .about-card {
+            background: var(--cream);
+            padding: 20px 16px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .about-card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+
+        .about-card .icon {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .about-card h4 {
+            font-size: 16px;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .about-card p {
+            font-size: 13px;
+            color: #5A4D42;
+            line-height: 1.4;
+        }
+
+        /* ===== DEPOIMENTOS ===== */
+        .testimonials {
+            padding: 80px 0;
+            background: var(--cream);
+        }
+
+        .testimonials .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .testimonials .section-title span {
+            color: var(--primary);
+        }
+
+        .testimonials .section-sub {
+            text-align: center;
+            color: #5A4D42;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 32px 28px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            text-align: center;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary-light);
+            box-shadow: 0 16px 48px rgba(44, 36, 30, 0.10);
+        }
+
+        .testimonial-card .stars {
+            color: var(--gold);
+            font-size: 18px;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-card .quote {
+            font-size: 15px;
+            color: var(--text);
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-card .quote::before {
+            content: '"';
+            color: var(--primary-light);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .testimonial-card .quote::after {
+            content: '"';
+            color: var(--primary-light);
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .testimonial-card .author .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--cream-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .testimonial-card .author .name {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--dark);
+        }
+
+        .testimonial-card .author .role {
+            font-size: 12px;
+            color: #6B5D52;
+        }
+
+        /* ===== CONTATO ===== */
+        .contact {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .contact .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .contact .section-title span {
+            color: var(--primary);
+        }
+
+        .contact .section-sub {
+            text-align: center;
+            color: #5A4D42;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: var(--cream);
+            padding: 32px 24px;
+            border-radius: 24px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            text-decoration: none;
+            color: var(--text);
+            display: block;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-card .icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .contact-card h4 {
+            font-size: 18px;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .contact-card p {
+            font-size: 14px;
+            color: #5A4D42;
+        }
+
+        .contact-card .highlight {
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 16px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: linear-gradient(165deg, var(--hero-bg-start) 0%, var(--hero-bg-end) 100%);
+            color: var(--text);
+            padding: 32px 0 24px;
+            border-top: 1px solid rgba(139, 107, 74, 0.1);
+        }
+
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+        }
+
+        .footer .footer-logo-img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--primary-light);
+            flex-shrink: 0;
+        }
+
+        .footer .footer-logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .footer .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .footer .footer-brand span {
+            color: var(--primary);
+        }
+
+        .footer .footer-copy {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: #5A4D42;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer .footer-copy .separator {
+            color: #B5A89B;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 992px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content p {
+                margin: 0 auto 32px;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .about .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .carousel-container {
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding: 20px 0;
+                gap: 16px;
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            .hero {
+                padding: 120px 0 60px;
+                min-height: auto;
+            }
+            .logo-img-wrapper {
+                width: 44px;
+                height: 44px;
+            }
+            .logo-text {
+                font-size: 20px;
+            }
+            .about-text h2 {
+                font-size: 30px;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            .about-image img {
+                max-width: 300px;
+            }
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            .carousel-btn.prev {
+                left: 12px;
+            }
+            .carousel-btn.next {
+                right: 12px;
+            }
+            .carousel-dots .dot {
+                width: 9px;
+                height: 9px;
+                gap: 8px;
+            }
+            .carousel-container {
+                border-radius: 0;
+            }
+            .carousel-title {
+                font-size: 28px;
+                margin-bottom: 24px;
+            }
+            .carousel-dots {
+                padding: 8px 0 0;
+                gap: 8px;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            .testimonials .section-title {
+                font-size: 28px;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            .contact .section-title {
+                font-size: 28px;
+            }
+            .footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .whatsapp-float {
+                width: 56px;
+                height: 56px;
+                font-size: 28px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .footer .footer-copy {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            .logo-img-wrapper {
+                width: 38px;
+                height: 38px;
+            }
+            .logo-text {
+                font-size: 18px;
+            }
+            .logo-sub {
+                font-size: 9px;
+                letter-spacing: 2px;
+            }
+            .about-text h2 {
+                font-size: 26px;
+            }
+            .about-image img {
+                max-width: 240px;
+            }
+            .carousel-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 13px;
+            }
+            .carousel-btn.prev {
+                left: 8px;
+            }
+            .carousel-btn.next {
+                right: 8px;
+            }
+            .carousel-dots .dot {
+                width: 8px;
+                height: 8px;
+            }
+            .carousel-section {
+                padding: 40px 0 40px;
+            }
+            .carousel-container {
+                border-radius: 0;
+            }
+            .carousel-title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            .carousel-slide img {
+                border-radius: 16px;
+            }
+            .carousel-dots {
+                padding: 6px 0 0;
+                gap: 6px;
+            }
+            .testimonials {
+                padding: 60px 0;
+            }
+            .testimonials .section-title {
+                font-size: 24px;
+            }
+            .testimonial-card {
+                padding: 24px 20px;
+            }
+            .contact {
+                padding: 60px 0;
+            }
+            .contact .section-title {
+                font-size: 24px;
+            }
+            .whatsapp-float {
+                width: 48px;
+                height: 48px;
+                font-size: 24px;
+                bottom: 16px;
+                right: 16px;
+            }
+            .footer .footer-copy {
+                font-size: 11px;
+                flex-direction: column;
+                gap: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== BOTÃO FLUTUANTE WHATSAPP ===== -->
+<a href="https://wa.me/5554992566272" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- ===== HEADER ===== -->
+<header class="header" id="header">
+    <div class="container">
+        <a href="#" class="logo">
+            <div class="logo-img-wrapper">
+                <img src="./logo.png" alt="Chima & Arte Logo" id="logoImg">
+            </div>
+            <div>
+                <div class="logo-text">Chima <span>&</span> Arte</div>
+                <span class="logo-sub">Especiarias & Aconchego</span>
+            </div>
+        </a>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#hero">Início</a>
+            <a href="#produtos">Produtos</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#depoimentos">Depoimentos</a>
+            <a href="#contato">Contato</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Pequenos gestos <br><span>que transformam</span> o dia</h1>
+            <p>Blends artesanais, especiarias selecionadas e presentes com alma. Cada produto é feito com dedicação para aquecer seu coração.</p>
+            <div class="hero-buttons">
+                <a href="./portfolio.pdf" download class="btn-primary">
+                    <i class="fas fa-file-pdf"></i> Ver catálogo
+                </a>
+                <a href="#contato" class="btn-secondary">
+                    <i class="fas fa-phone"></i> Entre em contato
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CARROSSEL ===== -->
+<section class="carousel-section" id="produtos">
+    <div class="container">
+        <h2 class="carousel-title">Nossos <span>Produtos</span></h2>
+        <div class="carousel-container">
+            <div class="carousel-slides" id="carouselSlides">
+                <div class="carousel-slide">
+                    <img src="./banner1.png" alt="Banner 1">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./banner2.png" alt="Banner 2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./banner3.png" alt="Banner 3">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./banner4.png" alt="Banner 4">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./banner5.png" alt="Banner 5">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./banner6.png" alt="Banner 6">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./banner7.png" alt="Banner 7">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./banner8.png" alt="Banner 8">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./banner9.png" alt="Banner 9">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./banner10.png" alt="Banner 10">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./banner11.png" alt="Banner 11">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./banner12.png" alt="Banner 12">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./banner13.png" alt="Banner 13">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./banner14.png" alt="Banner 14">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./banner15.png" alt="Banner 15">
+                </div>
+            </div>
+
+            <button class="carousel-btn prev" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-btn next" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <div class="carousel-dots" id="dotsContainer"></div>
+    </div>
+</section>
+
+<!-- ===== SOBRE ===== -->
+<section class="about" id="sobre">
+    <div class="container">
+        <div class="about-image">
+            <img src="./fabi.jpeg" alt="Fabiana - Chima & Arte" id="aboutImage">
+        </div>
+        <div class="about-text">
+            <span class="subtitle"><i class="fas fa-heart" style="color: var(--primary);"></i> Nossa filosofia</span>
+            <h2>Chima <span>&</span> Arte</h2>
+            <p class="description">
+                Sou a Fabiana, idealizadora da Chima & Arte. Sempre acreditei que pequenos gestos podem transformar o dia de alguém, e foi desse sentimento que nasceu a marca.
+            </p>
+            <p class="description">
+                A Chima & Arte une o carinho pelo chimarrão, pelos chás, pelas especiarias e pelos produtos artesanais, criando experiências que acolhem, encantam e despertam boas lembranças. Cada criação é desenvolvida com dedicação, buscando qualidade, beleza e significado.
+            </p>
+            <div class="about-grid">
+                <div class="about-card">
+                    <span class="icon"><i class="fas fa-bullseye"></i></span>
+                    <h4>Missão</h4>
+                    <p>Criar experiências que aquecem o coração e aproximam pessoas, com produtos artesanais de alta qualidade inspirados na cultura do chimarrão, chás e especiarias.</p>
+                </div>
+                <div class="about-card">
+                    <span class="icon"><i class="fas fa-eye"></i></span>
+                    <h4>Visão</h4>
+                    <p>Ser referência em experiências artesanais, fortalecendo a cultura do compartilhar e levando o propósito da Chima & Arte para cada vez mais lares.</p>
+                </div>
+                <div class="about-card">
+                    <span class="icon"><i class="fas fa-gem"></i></span>
+                    <h4>Valores</h4>
+                    <p>Amor, qualidade artesanal, tradição e inovação, acolhimento, ética, sustentabilidade, valorização do comércio local e fortalecimento da comunidade.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== DEPOIMENTOS ===== -->
+<section class="testimonials" id="depoimentos">
+    <div class="container">
+        <h2 class="section-title">O que nossos <span>clientes dizem</span></h2>
+        <p class="section-sub">Histórias de quem já viveu a experiência Chima & Arte</p>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="quote">O blend Calmaria é simplesmente maravilhoso! Toda noite tomo um chá antes de dormir e ele me ajuda a relaxar depois de um dia corrido.</p>
+                <div class="author">
+                    <div class="avatar">B</div>
+                    <div>
+                        <div class="name">Bianca L.</div>
+                        <div class="role">Cliente desde 2024</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="quote">Comprei um kit de presente para minha mãe e ela amou! A apresentação é linda e os produtos são de altíssima qualidade. Recomendo demais!</p>
+                <div class="author">
+                    <div class="avatar">R</div>
+                    <div>
+                        <div class="name">Rafaela F.</div>
+                        <div class="role">Cliente desde 2023</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="quote">A Chima & Arte transformou meus momentos de chimarrão. As especiarias dão um toque especial e a erva premium é a melhor que já experimentei.</p>
+                <div class="author">
+                    <div class="avatar">L</div>
+                    <div>
+                        <div class="name">Lucas M.</div>
+                        <div class="role">Cliente desde 2024</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CONTATO ===== -->
+<section class="contact" id="contato">
+    <div class="container">
+        <h2 class="section-title">Entre em <span>contato</span></h2>
+        <p class="section-sub">Fale conosco, tire dúvidas ou faça sua encomenda personalizada</p>
+
+        <div class="contact-grid">
+            <a href="https://wa.me/5554992566272" target="_blank" class="contact-card">
+                <span class="icon"><i class="fab fa-whatsapp"></i></span>
+                <h4>WhatsApp</h4>
+                <p class="highlight">(54) 99256-6272</p>
+                <p>Atendimento rápido e personalizado</p>
+            </a>
+
+            <a href="https://instagram.com/chima.arte" target="_blank" class="contact-card">
+                <span class="icon"><i class="fab fa-instagram"></i></span>
+                <h4>Instagram</h4>
+                <p class="highlight">@chima.arte</p>
+                <p>Acompanhe nossos lançamentos</p>
+            </a>
+
+            <a href="mailto:contato@chimaarte.com" class="contact-card">
+                <span class="icon"><i class="fas fa-envelope"></i></span>
+                <h4>E-mail</h4>
+                <p class="highlight">contato@chimaarte.com</p>
+                <p>Envie sua mensagem</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="container">
+        <a href="#" class="footer-logo">
+            <div class="footer-logo-img">
+                <img src="./logo.png" alt="Chima & Arte Logo">
+            </div>
+            <div>
+                <div class="footer-brand">Chima <span>&</span> Arte</div>
+            </div>
+        </a>
+        <div class="footer-copy">
+            2026 · Chima&Arte
+            <span class="separator">|</span>
+            Todos os direitos reservados
+        </div>
+    </div>
+</footer>
+
+<!-- ===== SCRIPT ===== -->
+<script>
+    // Menu mobile
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+        const icon = mobileToggle.querySelector('i');
+        if (navLinks.classList.contains('open')) {
+            icon.className = 'fas fa-times';
+        } else {
+            icon.className = 'fas fa-bars';
+        }
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            document.querySelector('#mobileToggle i').className = 'fas fa-bars';
+        });
+    });
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 20) {
+            header.style.boxShadow = '0 4px 30px rgba(0,0,0,0.06)';
+        } else {
+            header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.04)';
+        }
+    });
+
+    // ===== CARROSSEL =====
+    const slides = document.getElementById('carouselSlides');
+    const slideItems = slides.querySelectorAll('.carousel-slide');
+    const totalSlides = slideItems.length;
+    let currentIndex = 0;
+    let isTransitioning = false;
+
+    // Criar dots
+    const dotsContainer = document.getElementById('dotsContainer');
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.dataset.index = i;
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+    }
+
+    const dots = dotsContainer.querySelectorAll('.dot');
+
+    function goToSlide(index) {
+        if (isTransitioning) return;
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
+        
+        isTransitioning = true;
+        currentIndex = index;
+        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+        
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 500);
+    }
+
+    function nextSlide() {
+        goToSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+        goToSlide(currentIndex - 1);
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', nextSlide);
+    document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
+    // Teclado
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // Touch suporte
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const container = document.querySelector('.carousel-container');
+
+    container.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    container.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) nextSlide();
+            else prevSlide();
+        }
+    }, { passive: true });
+</script>
+
+</body>
+</html>
