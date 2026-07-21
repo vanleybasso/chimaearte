@@ -703,7 +703,7 @@
 
         /* ===== FOOTER ===== */
         .footer {
-            background: linear-gradient(165deg, var(--hero-bg-start) 0%, var(--hero-bg-end) 100%);
+            background: linear-gradient(165deg, #F9F5F0 0%, #F0E8DF 100%);
             color: var(--text);
             padding: 32px 0 24px;
             border-top: 1px solid rgba(139, 107, 74, 0.1);
@@ -759,7 +759,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             justify-content: center;
         }
 
@@ -893,6 +893,7 @@
             }
             .footer .footer-copy {
                 font-size: 12px;
+                flex-wrap: nowrap;
             }
         }
 
@@ -978,8 +979,7 @@
             }
             .footer .footer-copy {
                 font-size: 11px;
-                flex-direction: column;
-                gap: 2px;
+                flex-wrap: nowrap;
             }
         }
     </style>
